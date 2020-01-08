@@ -37,7 +37,7 @@ public class CalculatorScript : MonoBehaviour
 
     void CalculateREMHours()
     {   
-        int minsleep = 13 /2;
+       
         int crnthour = System.DateTime.Now.Hour;
         int crntminute = System.DateTime.Now.Minute;
       
@@ -75,6 +75,8 @@ public class CalculatorScript : MonoBehaviour
     {
         int crnthour = System.DateTime.Now.Hour;
         int crntminute = System.DateTime.Now.Minute;
+
+        
 
         //Accounting for time to fall asleep
         int wakeminute = crntminute + 44 ;
