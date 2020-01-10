@@ -18,7 +18,7 @@ public class WindowGraph : MonoBehaviour
        XLabel = graphContainer.Find("XAxisLabel").GetComponent<RectTransform>();
        YLabel = graphContainer.Find("YAxisLabel").GetComponent<RectTransform>(); 
         List<int> valueList = new List<int>() { 5, 10, 7, 16, 4, 3, 12,  };
-        ShowGraph(valueList);
+       // ShowGraph(valueList);
 
 
        
@@ -47,7 +47,7 @@ public class WindowGraph : MonoBehaviour
         return gameObject;
     }
 
-    private void ShowGraph(List<int> valueList)
+    public void ShowGraph(List<int> valueList)
     {
         float xSize = 12.5f;
         float yMax = 16f;
@@ -81,7 +81,7 @@ public class WindowGraph : MonoBehaviour
             RectTransform labelX = Instantiate(XLabel);
             labelX.SetParent(graphContainer, false);
             labelX.gameObject.SetActive(true);
-            labelX.anchoredPosition = new Vector2(xPosition, -5f);
+            labelX.anchoredPosition = new Vector2(xPosition, -2f);
            
 
 
@@ -136,7 +136,7 @@ public class WindowGraph : MonoBehaviour
             labelY.gameObject.SetActive(true);
             
             float normalisedValue = i * 1f / separatorCount;
-            labelY.anchoredPosition = new Vector2(-5f, normalisedValue * graphHeight);
+            labelY.anchoredPosition = new Vector2(-2f, normalisedValue * graphHeight);
             labelY.GetComponent<TMPro.TMP_Text>().text = Mathf.RoundToInt(normalisedValue * yMax).ToString();
             }
     }
