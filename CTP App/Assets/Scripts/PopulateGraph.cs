@@ -51,18 +51,12 @@ public class PopulateGraph : MonoBehaviour
                 hourinput.text = ("Out of Range");
             }
 
-            Debug.Log(hours);
+          
 
             hoursSlept.RemoveAt(dayofweek);
             hoursSlept.Insert(dayofweek, hours);
 
-            if (hoursSlept.Count > 6)
-            {
-                hoursSlept.RemoveAt(7);
-            }
-
-            //Fills graph with number
-              //  newgraph.ShowGraph(hoursSlept);
+          
          }
         
 
@@ -72,7 +66,7 @@ public class PopulateGraph : MonoBehaviour
             Debug.Log("no");
         }
 
-      //  fillgraph = GameObject.FindObjectOfType(typeof(ShowGraph)) as ShowGraph;
+      
 
       
        
