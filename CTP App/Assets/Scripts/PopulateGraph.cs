@@ -7,10 +7,13 @@ using TMPro;
 public class PopulateGraph : MonoBehaviour
 {
 
+    private Button drawbutton;
     private Button subbutton;
     private TMP_InputField hourinput;
     public TMPro.TMP_Dropdown daycheck;
     public WindowGraph newgraph;
+    public List<int> hoursSlept = new List<int>(7);
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -19,23 +22,22 @@ public class PopulateGraph : MonoBehaviour
         subbutton = GameObject.Find("Submit").GetComponent<Button>();
         subbutton.onClick.AddListener(delegate { PopulateList(); });
         hourinput = GameObject.Find("Input").GetComponent<TMP_InputField>();
-        
+        drawbutton = GameObject.Find("Draw").GetComponent<Button>();
+        drawbutton.onClick.AddListener(delegate { newgraph.ShowGraph(hoursSlept); });
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
 
     void PopulateList()
     {
 
-        List<int> hoursSlept = new List<int> {};
-
         int hours = 0;
-        int test = daycheck.value;
+        int dayofweek = daycheck.value;
 
         //Checks to see if number is a number
         if (int.TryParse(hourinput.text, out hours))
@@ -46,22 +48,21 @@ public class PopulateGraph : MonoBehaviour
             //Checks if number is in range
             if (hours < 0 || hours > 16)
             {
-             hourinput.text = ("Out of Range");
+                hourinput.text = ("Out of Range");
             }
 
             Debug.Log(hours);
 
-            //switch (test)
-            //{
-            //    case 0:
-            //        hoursSlept = new List<int> {}
-            //        break;
-            //}
+            hoursSlept.RemoveAt(dayofweek);
+            hoursSlept.Insert(dayofweek, hours);
 
-           
-               
+            if (hoursSlept.Count > 6)
+            {
+                hoursSlept.RemoveAt(7);
+            }
+
             //Fills graph with number
-                newgraph.ShowGraph(hoursSlept);
+              //  newgraph.ShowGraph(hoursSlept);
          }
         
 
@@ -71,7 +72,7 @@ public class PopulateGraph : MonoBehaviour
             Debug.Log("no");
         }
 
-       // fillgraph = GameObject.FindObjectOfType(typeof(ShowGraph)) as ShowGraph;
+      //  fillgraph = GameObject.FindObjectOfType(typeof(ShowGraph)) as ShowGraph;
 
       
        
