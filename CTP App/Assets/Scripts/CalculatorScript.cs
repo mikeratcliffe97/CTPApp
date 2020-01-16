@@ -92,12 +92,19 @@ public class CalculatorScript : MonoBehaviour
 
         
 
-        rechours.SetText("You should wake up at around: {0}:{1} to get the minimum recommended amount of sleep.", wakehour, wakeminute);
-        if (wakeminute < 10)
-        {
-            rechours.SetText("You should wake up at around: {0}:0{1} to get the minimum recommended amount of sleep.", wakehour, wakeminute);
-        }
+       
+     
 
+        if (wakehour >= 24 || wakeminute < 10)
+        {
+            wakehour = wakehour - 24;
+            if (wakeminute < 10)
+            {
+                rechours.SetText("You should wake up at around: {0}:0{1} to get the minimum recommended amount of sleep.", wakehour, wakeminute);
+            }
+ 
+        }
+            rechours.SetText("You should wake up at around: {0}:{1} to get the minimum recommended amount of sleep.", wakehour, wakeminute);
     }
 
  
