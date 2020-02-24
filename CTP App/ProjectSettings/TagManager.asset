@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - UIFX
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 3762369641
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ForeGround
+    uniqueID: 3788990149
     locked: 0
