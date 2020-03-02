@@ -20,7 +20,7 @@ public class PopulateGraph : MonoBehaviour
        
        
         subbutton = GameObject.Find("Submit").GetComponent<Button>();
-        subbutton.onClick.AddListener(delegate { PopulateList(); });
+        subbutton.onClick.AddListener(delegate { PopulateList(); newgraph.ShowGraph(hoursSlept); });
         hourinput = GameObject.Find("Input").GetComponent<TMP_InputField>();
         drawbutton = GameObject.Find("Draw").GetComponent<Button>();
         drawbutton.onClick.AddListener(delegate { newgraph.ShowGraph(hoursSlept); });

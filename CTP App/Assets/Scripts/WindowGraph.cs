@@ -27,7 +27,7 @@ public class WindowGraph : MonoBehaviour
         BarButton.onClick.AddListener(delegate { bar = true; });
 
         LineButton = GameObject.Find("LineButton").GetComponent<Button>();
-        LineButton.onClick.AddListener(delegate { bar = false; }) ;
+        LineButton.onClick.AddListener(delegate { bar = false;}) ;
 
         gameObjectList = new List<GameObject>();
         //  List<int> valueList = new List<int>() { 5, 10, 7, 16, 4, 3, 12,  };
@@ -160,7 +160,7 @@ public class WindowGraph : MonoBehaviour
 
            
             Debug.Log(gameObjectList.ToString());
-    
+            
 
 
     }
