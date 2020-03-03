@@ -9,6 +9,7 @@ public class AvatarManager : MonoBehaviour
     public int Hunger = 0;
     public int Boredom = 0;
     public int Sleep = 0;
+    private int max_mood = 10;
     private float initialTime = 0;
     private Slider hSlider;
     private Slider bSlider;
@@ -25,12 +26,15 @@ public class AvatarManager : MonoBehaviour
 
     private Button SleepButton;
     private Button SocialButton;
+    private Button BoredButton;
+
 
     private Image hFill;
     private Image sFill;
     private Image bFill;
 
-    private List<Color> colors;
+    private List<Color> colours;
+    private Color baseColour;
     void Start()
     {
         hSlider = GameObject.Find("Hunger").GetComponent<Slider>();
@@ -52,6 +56,10 @@ public class AvatarManager : MonoBehaviour
         SleepButton = GameObject.Find("SleepButton").GetComponent<Button>();
         SleepButton.onClick.AddListener(delegate { AddSleep(); });
 
+        BoredButton = GameObject.Find("ActivityButton").GetComponent<Button>();
+        BoredButton.onClick.AddListener(delegate { AddActivity(); });
+
+        baseColour = mood.startColor;
     }
     // Update is called once per frame
     void Update()
@@ -63,6 +71,32 @@ public class AvatarManager : MonoBehaviour
         sSlider.value = (float)Sleep;
 
         int lowestMood;
+        var amount = Mathf.Min(Mathf.Min(Hunger, Boredom), Sleep);
+
+
+        if (amount == Hunger)
+        {
+            lowestMood = Hunger;
+            mood.startColor = hFill.color;
+            //      colors.Add(hFill.color);
+
+        }
+        else if (amount == Boredom)
+        {
+            lowestMood = Boredom;
+            mood.startColor = bFill.color;
+            //    colors.Add(bFill.color);
+
+        }
+
+        else if (amount == Sleep)
+        {
+            lowestMood = Sleep;
+            mood.startColor = sFill.color;
+            //    colors.Add(sFill.color);
+        }
+
+
         if (Hunger < Boredom || Hunger < Sleep)
         {
             lowestMood = Hunger;
@@ -86,7 +120,10 @@ public class AvatarManager : MonoBehaviour
         //    colors.Add(sFill.color);
         }
 
-       
+       else if (Sleep >= max_mood && Hunger >= max_mood && Boredom >= max_mood)
+        {
+            mood.startColor = baseColour;
+        }
     }
 
 
@@ -101,6 +138,18 @@ public class AvatarManager : MonoBehaviour
         Sleep = (int)_sleep;
         return Sleep;
     }
+
+    public float AddActivity()
+    {
+        float boredomCured = 2;
+        float _bored = (float)Boredom;
+
+        _bored = _bored + boredomCured;
+
+        Boredom = (int)_bored;
+        return Boredom;
+    }
+
 
 
     public void AddFood()
