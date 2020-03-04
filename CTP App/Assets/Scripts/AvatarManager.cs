@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class AvatarManager : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    #region Variables
+ 
     public int Hunger = 0;
     public int Boredom = 0;
     public int Sleep = 0;
@@ -34,9 +35,11 @@ public class AvatarManager : MonoBehaviour
     private Image bFill;
 
     private List<Color> colours;
-    private Color baseColour;
+    private Color baseColour;  
+    #endregion
     void Start()
     {
+        #region Initalising Buttons
         hSlider = GameObject.Find("Hunger").GetComponent<Slider>();
         bSlider = GameObject.Find("Social").GetComponent<Slider>();
         sSlider = GameObject.Find("Sleep").GetComponent<Slider>();
@@ -60,6 +63,7 @@ public class AvatarManager : MonoBehaviour
         BoredButton.onClick.AddListener(delegate { AddActivity(); });
 
         baseColour = mood.startColor;
+        #endregion
     }
     // Update is called once per frame
     void Update()
