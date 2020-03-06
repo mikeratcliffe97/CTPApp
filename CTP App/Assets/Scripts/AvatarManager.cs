@@ -18,7 +18,7 @@ public class AvatarManager : MonoBehaviour
     private ParticleSystem mood;
 
     private Button FoodButton;
-    int FButton = 0;
+   // int FButton = 0;
 
 
     private Button FButton1;
