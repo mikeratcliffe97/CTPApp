@@ -7,12 +7,18 @@ using UnityEngine.SceneManagement;
 public class MainSceneSwap : MonoBehaviour
 {
   
+    [SerializeField]
     private Button button;
+    [SerializeField]
+    private Button reset;
+    [SerializeField]
+    private Button altReset;
     // Start is called before the first frame update
    
     void Start()
     {
-        button = this.GetComponent<Button>();
+        altReset.onClick.AddListener(delegate { Reset(); });
+        reset.onClick.AddListener(delegate { Reset(); });
         button.onClick.AddListener(delegate { Return(); });
     }
 
@@ -20,5 +26,11 @@ public class MainSceneSwap : MonoBehaviour
    void Return()
     {
         SceneManager.LoadScene(0);
+       
+    }
+
+    void Reset()
+    {
+        SceneManager.LoadScene(1);
     }
 }
