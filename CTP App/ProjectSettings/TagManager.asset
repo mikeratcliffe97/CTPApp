@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Header
+  - Feeling
+  - Clone
+  - PointsIcon
+  - StarIcon
   layers:
   - Default
   - TransparentFX

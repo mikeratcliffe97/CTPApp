@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Button RightButton;
 
+    public Collider2D playercol;
+
     private int rightbound;
     private int leftbound;
     [SerializeField]
@@ -63,6 +65,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+      
+            Debug.Log("Scored!");
+         
+           if (collision.gameObject.tag == "StarIcon")
+            {
+                game.score += 100;
+            }
+
+           if (collision.gameObject.tag == "Feeling")
+            {
+                game.score -= 25;
+            }
+           else if (collision.gameObject.tag != "Feeling" && collision.gameObject.tag != "StarIcon")
+            {
+                game.score += 10;
+            }
+            if (game.numObjects >= 1)
+            {
+                collision.gameObject.SetActive(false);
+            }
+        
+    }
     //void MoveMiddle()
     //{
     //    float xPos = transform.position.x;
