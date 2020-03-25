@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
     private GameObject clone;
     private GameObject symptomClone;
 
-
+    private int maxScore = 450;
    
 
     public Button StartButton;
@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour
                 droppers.fallspeed = 1.25f;
             }
 
-            if (score >= 300 || timeLeft <= 0)
+            if (score >= maxScore || timeLeft <= 0)
             {
                 CancelInvoke();
                 StopAllCoroutines();
@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
 
         if (GameComplete)
         {
-            if (score >= 300)
+            if (score >= maxScore)
             {
                 WinScreen.SetActive(true);
                 winscreenText.text = "Congratulations! \nYour score was: " + score;
@@ -300,7 +300,7 @@ public class GameController : MonoBehaviour
                 }
             case 4:
                 {
-                    symptomText.text = "Alone";
+                    symptomText.text = "Lonely";
                     symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
                     symptomClone.SetActive(true);
                     break;

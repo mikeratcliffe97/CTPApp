@@ -18,7 +18,30 @@ public static class SaveManager
         bf.Serialize(stream, data);
         stream.Close();
     }
-   
+
+
+    public static int[] LoadAvatarStats ()
+    {
+        if (File.Exists(Application.persistentDataPath + "/avatar.sav"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + "/avatar.sav", FileMode.Open);
+
+            AvatarStats data = bf.Deserialize(stream) as AvatarStats;
+
+            stream.Close();
+
+            return data.stats;
+        }
+
+        else
+        {
+            Debug.Log("Nah bro");
+            return null;
+        }
+      
+    }
+       
 }
 
 [Serializable]
@@ -32,7 +55,6 @@ public class AvatarStats
         stats[0] = mainAvatar.Boredom;
         stats[1] = mainAvatar.Sleep;
         stats[2] = mainAvatar.Hunger;
-
-
+        stats[3] = System.DateTime.Now.Hour;
     }
 }

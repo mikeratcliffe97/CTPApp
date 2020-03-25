@@ -6,10 +6,16 @@ public class AvatarManager : MonoBehaviour
 {
     // Start is called before the first frame update
     #region Variables
- 
+
+    [SerializeField]
     public int Hunger = 0;
+    [SerializeField]
     public int Boredom = 0;
+    [SerializeField]
     public int Sleep = 0;
+
+    public int logOffHour = 4;
+
     private int max_mood = 10;
     private float initialTime = 0;
     private Slider hSlider;
@@ -18,7 +24,7 @@ public class AvatarManager : MonoBehaviour
     private ParticleSystem mood;
 
     private Button FoodButton;
-   // int FButton = 0;
+    // int FButton = 0;
 
 
     private Button FButton1;
@@ -35,8 +41,14 @@ public class AvatarManager : MonoBehaviour
     private Image bFill;
 
     private List<Color> colours;
-    private Color baseColour;  
+    private Color baseColour;
     #endregion
+
+    void Awake()
+    {
+        Load();
+    }
+
     void Start()
     {
         #region Initalising Buttons
@@ -68,7 +80,7 @@ public class AvatarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
 
         hSlider.value = (float)Hunger;
         bSlider.value = (float)Boredom;
@@ -105,15 +117,15 @@ public class AvatarManager : MonoBehaviour
         {
             lowestMood = Hunger;
             mood.startColor = hFill.color;
-      //      colors.Add(hFill.color);
-           
+            //      colors.Add(hFill.color);
+
         }
 
         else if (Boredom < Hunger || Boredom < Sleep)
         {
             lowestMood = Boredom;
             mood.startColor = bFill.color;
-        //    colors.Add(bFill.color);
+            //    colors.Add(bFill.color);
 
         }
 
@@ -121,17 +133,17 @@ public class AvatarManager : MonoBehaviour
         {
             lowestMood = Sleep;
             mood.startColor = sFill.color;
-        //    colors.Add(sFill.color);
+            //    colors.Add(sFill.color);
         }
 
-       else if (Sleep >= max_mood && Hunger >= max_mood && Boredom >= max_mood)
+        else if (Sleep >= max_mood && Hunger >= max_mood && Boredom >= max_mood)
         {
             mood.startColor = baseColour;
         }
     }
 
 
-   public int AddSleep()
+    public int AddSleep()
     {
         float timeSlept = 2;
         float _sleep = (float)Sleep;
@@ -169,14 +181,14 @@ public class AvatarManager : MonoBehaviour
         FButton3.onClick.AddListener(delegate { Food3(); });
         Debug.Log("YUMTIME");
 
-        
+
     }
 
 
     public int Food1()
     {
         if (Hunger <= 5)
-        Hunger = Hunger + 5;
+            Hunger = Hunger + 5;
 
         return Hunger;
     }
@@ -187,13 +199,33 @@ public class AvatarManager : MonoBehaviour
         {
             Hunger = Hunger + 10;
         }
-            return Hunger;
+        return Hunger;
     }
 
     public int Food3()
     {
-       
+
         Hunger = Hunger + 2;
         return Hunger;
+    }
+
+   public void SaveStats()
+    {
+        SaveManager.SaveAvatarStats(this);
+    }
+
+    public void Load()
+    {
+        int[] loadedStats = SaveManager.LoadAvatarStats();
+        Boredom = loadedStats[0];
+        Sleep = loadedStats[1];
+        Hunger = loadedStats[2];
+        logOffHour = loadedStats[3];
+        //   numberofTiles = loadedDims[2];
+
+
+       
+        // levelGen.SpawnPlayer();
+
     }
 }

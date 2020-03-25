@@ -12,7 +12,8 @@ public class SceneChange : MonoBehaviour
     [SerializeField]
     private Button game3button;
 
-
+    [SerializeField]
+    private AvatarManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class SceneChange : MonoBehaviour
 
     void LoadGame1()
     {
+        manager.SaveStats();
         SceneManager.LoadScene(1);
      
     }
