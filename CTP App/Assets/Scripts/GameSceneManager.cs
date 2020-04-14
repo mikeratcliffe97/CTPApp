@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainSceneSwap : MonoBehaviour
+public class GameSceneManager : MonoBehaviour
 {
-  
+    [SerializeField]
+    GameController game;
+
     [SerializeField]
     private Button button;
     [SerializeField]
@@ -25,7 +27,10 @@ public class MainSceneSwap : MonoBehaviour
     // Update is called once per frame
    void Return()
     {
+        SaveManager.SaveFeelings(game);
+        
         SceneManager.LoadScene(0);
+        
        
     }
 

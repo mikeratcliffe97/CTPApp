@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour
     public GameObject ObjectSpawnPos;
 
     [SerializeField]
+    public List<string> Feelings;
+
+    [SerializeField]
     private ObjectDrop droppers;
 
     public int score = 0;
@@ -325,5 +328,13 @@ public class GameController : MonoBehaviour
 
         }
        
+    }
+
+   public void AddSymptom()
+    {
+        if (!Feelings.Contains(symptomText.text))
+        {
+            Feelings.Add(symptomText.text);
+        }
     }
 }

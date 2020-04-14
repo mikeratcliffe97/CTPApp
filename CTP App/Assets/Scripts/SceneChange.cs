@@ -34,6 +34,7 @@ public class SceneChange : MonoBehaviour
     {
         manager.SaveStats();
         SceneManager.LoadScene(1);
+        Debug.Log("Swapping");
      
     }
 

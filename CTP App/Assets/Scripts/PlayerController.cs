@@ -23,15 +23,16 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+       
      //   MiddleButton.onClick.AddListener(delegate { MoveMiddle(); });
-      
-            LeftButton.onClick.AddListener(delegate { MoveLeft(); });
+
+        LeftButton.onClick.AddListener(delegate { MoveLeft(); });
             RightButton.onClick.AddListener(delegate { MoveRight(); });
         rightbound = (int)RightButton.transform.position.x;
         leftbound = (int)LeftButton.transform.position.x;
     }
 
+   
     // Update is called once per frame
     void Update()
     {
@@ -89,6 +90,8 @@ public class PlayerController : MonoBehaviour
             }
         
     }
+
+ 
     //void MoveMiddle()
     //{
     //    float xPos = transform.position.x;

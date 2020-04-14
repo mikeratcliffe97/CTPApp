@@ -41,6 +41,39 @@ public static class SaveManager
         }
       
     }
+
+    public static void SaveFeelings(GameController mainGame)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream stream = new FileStream(Application.persistentDataPath + "/feelings.sav", FileMode.Create);
+        DiagnosisStats data = new DiagnosisStats(mainGame);
+
+        bf.Serialize(stream, data);
+        Debug.Log("Saved");
+        stream.Close();
+    }
+
+    public static List<String> LoadDiagnosisStats ()
+    {
+
+        string filepath = Application.persistentDataPath + "/feelings.sav";
+        if (File.Exists(filepath))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(filepath, FileMode.Open);
+            DiagnosisStats data = bf.Deserialize(stream) as DiagnosisStats;
+
+            stream.Close();
+            return data.statsList;
+        }
+        
+        else 
+        { 
+            Debug.Log("No file here"); 
+            return null; 
+        }
+    }
+    //TODO: write load function
        
 }
 
@@ -56,5 +89,24 @@ public class AvatarStats
         stats[1] = mainAvatar.Sleep;
         stats[2] = mainAvatar.Hunger;
         stats[3] = System.DateTime.Now.Hour;
+    }
+}
+
+[Serializable]
+public class DiagnosisStats
+{
+
+    public List<string> statsList;
+
+    public DiagnosisStats (GameController mainGame)
+    {
+        int statSize = mainGame.Feelings.Count;
+        statsList = new List<string>(statSize);
+
+        for (int i = 0; i < statSize; i++)
+        {
+            statsList[i] = mainGame.Feelings[i];
+        }
+       
     }
 }

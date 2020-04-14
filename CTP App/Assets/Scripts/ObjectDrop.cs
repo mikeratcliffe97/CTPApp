@@ -15,7 +15,7 @@ public class ObjectDrop : MonoBehaviour
     [SerializeField]
     private PlayerController player;
 
-    private Button icon;
+   
 
     
    
@@ -23,8 +23,8 @@ public class ObjectDrop : MonoBehaviour
     void Start()
     {
         objectNumber = gameController.numObjects;
-        icon = this.gameObject.GetComponent<Button>();
-        icon.onClick.AddListener(delegate { onCatch(); });
+    
+        SwipeDetect.OnSwipe += SwipeDetect_OnSwipe;
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class ObjectDrop : MonoBehaviour
 
             yPos = yPos - (fallspeed * DT);
 
-            this.transform.position = new Vector3(this.transform.position.x, yPos, 0);
+            this.transform.position = new Vector2(this.transform.position.x, yPos);
 
             if (yPos < -2000)
             {
@@ -56,9 +56,16 @@ public class ObjectDrop : MonoBehaviour
 
     void onCatch()
     {
-        this.gameObject.SetActive(false);
+      //  this.gameObject.SetActive(false);
     }
 
- 
-  
+
+    private void SwipeDetect_OnSwipe(SwipeData data)
+    {
+        if (this.tag == "Feeling")
+        {
+            gameController.AddSymptom();
+            this.gameObject.SetActive(false);
+        }
+    }
 }
