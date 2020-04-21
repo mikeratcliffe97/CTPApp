@@ -7,8 +7,12 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> ObjectLanes;
-    private List<Color> colourFeel;
+   
     public GameObject ObjectSpawnPos;
+
+    [SerializeField]
+    public AudioSource catchNoise;
+
 
     [SerializeField]
     public List<string> Feelings;
@@ -60,6 +64,8 @@ public class GameController : MonoBehaviour
     float timeLeft = 100f;
 
     private RawImage heartObj;
+
+    private 
     // Start is called before the first frame update
 
     //Random Number Gen to select which lane the object will spawn in
@@ -84,7 +90,8 @@ public class GameController : MonoBehaviour
         Symptom.SetActive(false);
         Heart.SetActive(false);
         Star.SetActive(false);
-     //   AssignColors();
+
+      
     }
 
     void Awake()
@@ -92,21 +99,7 @@ public class GameController : MonoBehaviour
      
     }
 
-   /* void AssignColors()
-    {
-        colourFeel = new List<Color>();
-        Color red = heartObj.color;
-         colourFeel.Add(red); 
-        
-        Color blue = new Color(49, 77, 121);
-        colourFeel.Add(blue); 
-        
-        Color orange = new Color(248, 180, 69);
-        colourFeel.Add(orange);
-       
-        
-        Debug.Log(colourFeel.Count + " Colours");
-    }*/
+
     // Update is called once per frame
     void Update()
     {
@@ -265,7 +258,7 @@ public class GameController : MonoBehaviour
 
     void SymptomDrop()
     {
-        symptomNumber = Random.Range(0, 7);
+        symptomNumber = Random.Range(0, 8);
         Vector3 SpawnPos = new Vector3(ObjectLanes[ChosenLane].transform.position.x, 2000, 0);
         switch (symptomNumber)
         {
@@ -337,4 +330,6 @@ public class GameController : MonoBehaviour
             Feelings.Add(symptomText.text);
         }
     }
+
+   
 }

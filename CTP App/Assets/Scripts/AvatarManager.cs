@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class AvatarManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,7 +15,13 @@ public class AvatarManager : MonoBehaviour
     [SerializeField]
     public int Sleep = 0;
 
-    public int logOffHour = 4;
+    public int currentHour;
+   
+    public int lastUsedHour;
+   
+    
+    [SerializeField]
+    public int catNumber;
 
     private int max_mood = 10;
     private float initialTime = 0;
@@ -25,6 +32,11 @@ public class AvatarManager : MonoBehaviour
 
     private Button FoodButton;
     // int FButton = 0;
+
+    private List<GameObject> catsToDisplay;
+    public GameObject catOnDisplay;
+   [SerializeField]
+    private CarouselSlider customU;
 
 
     private Button FButton1;
@@ -43,14 +55,22 @@ public class AvatarManager : MonoBehaviour
     private List<Color> colours;
     private Color baseColour;
     #endregion
-
+    [SerializeField]
+    private GameObject[] breathTexts;
+   
+   
+    public bool AnimEnabled = false;
+   [SerializeField]
+    private Animation breath;
     void Awake()
     {
-        Load();
+        AddCats();
     }
 
     void Start()
     {
+        customU.catSelect.onClick.AddListener(delegate { CatSelect(); });
+        breath = this.GetComponent<Animation>();
         #region Initalising Buttons
         hSlider = GameObject.Find("Hunger").GetComponent<Slider>();
         bSlider = GameObject.Find("Social").GetComponent<Slider>();
@@ -75,13 +95,40 @@ public class AvatarManager : MonoBehaviour
         BoredButton.onClick.AddListener(delegate { AddActivity(); });
 
         baseColour = mood.startColor;
+        
+      
         #endregion
     }
+
+    public void CatSelect()
+    {
+        catNumber = customU.current_index;
+    }
+
+    
+
+   public void AddCats()
+    {
+       
+        catsToDisplay = new List<GameObject>();
+
+      
+       for (int i = 0; i < customU.images.Length; i++)
+        {
+            GameObject Cat = customU.images[i].gameObject;
+            catsToDisplay.Add(Cat);
+           
+        }
+
+        Debug.Log(catsToDisplay.Count + "cats");
+    }
     // Update is called once per frame
+
+
     void Update()
     {
-
-
+       this.GetComponent<RawImage>().texture = catsToDisplay[catNumber].GetComponent<RawImage>().texture;
+        PlayAnimation();
         hSlider.value = (float)Hunger;
         bSlider.value = (float)Boredom;
         sSlider.value = (float)Sleep;
@@ -89,7 +136,7 @@ public class AvatarManager : MonoBehaviour
         int lowestMood;
         var amount = Mathf.Min(Mathf.Min(Hunger, Boredom), Sleep);
 
-
+        #region StatsBar
         if (amount == Hunger)
         {
             lowestMood = Hunger;
@@ -111,38 +158,23 @@ public class AvatarManager : MonoBehaviour
             mood.startColor = sFill.color;
             //    colors.Add(sFill.color);
         }
-
-
-        if (Hunger < Boredom || Hunger < Sleep)
+  #endregion
+        if (breath.isPlaying)
         {
-            lowestMood = Hunger;
-            mood.startColor = hFill.color;
-            //      colors.Add(hFill.color);
-
+            breathTexts[0].SetActive(true);
+            breathTexts[1].SetActive(true);
+        }
+    
+        if (!breath.isPlaying)
+        {
+            breathTexts[0].SetActive(false);
+            breathTexts[1].SetActive(false);
         }
 
-        else if (Boredom < Hunger || Boredom < Sleep)
-        {
-            lowestMood = Boredom;
-            mood.startColor = bFill.color;
-            //    colors.Add(bFill.color);
-
-        }
-
-        else if (Sleep < Hunger || Sleep < Boredom)
-        {
-            lowestMood = Sleep;
-            mood.startColor = sFill.color;
-            //    colors.Add(sFill.color);
-        }
-
-        else if (Sleep >= max_mood && Hunger >= max_mood && Boredom >= max_mood)
-        {
-            mood.startColor = baseColour;
-        }
+        currentHour = System.DateTime.Now.Hour;
     }
 
-
+    #region ButtonCalculations
     public int AddSleep()
     {
         float timeSlept = 2;
@@ -209,8 +241,10 @@ public class AvatarManager : MonoBehaviour
         return Hunger;
     }
 
-   public void SaveStats()
+    #endregion
+    public void SaveStats()
     {
+        lastUsedHour = 2;
         SaveManager.SaveAvatarStats(this);
     }
 
@@ -220,12 +254,27 @@ public class AvatarManager : MonoBehaviour
         Boredom = loadedStats[0];
         Sleep = loadedStats[1];
         Hunger = loadedStats[2];
-        logOffHour = loadedStats[3];
-        //   numberofTiles = loadedDims[2];
-
-
+        lastUsedHour = loadedStats[3];
+        catNumber = loadedStats[4];
        
-        // levelGen.SpawnPlayer();
+    }
+
+        public void PlayAnimation()
+        {
+        if (AnimEnabled)
+        {
+            breath.Play();
+            breath.wrapMode = WrapMode.Loop;
+        }
+
+        else { breath.Stop(); }
+        }
+      
+    public void setAnimation()
+    {
+        AnimEnabled = !AnimEnabled;
+    }
+     
 
     }
-}
+

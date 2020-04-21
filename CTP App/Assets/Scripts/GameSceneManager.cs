@@ -22,6 +22,8 @@ public class GameSceneManager : MonoBehaviour
         altReset.onClick.AddListener(delegate { Reset(); });
         reset.onClick.AddListener(delegate { Reset(); });
         button.onClick.AddListener(delegate { Return(); });
+
+       
     }
 
     // Update is called once per frame

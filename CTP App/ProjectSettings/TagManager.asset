@@ -9,6 +9,7 @@ TagManager:
   - Clone
   - PointsIcon
   - StarIcon
+  - Cat
   layers:
   - Default
   - TransparentFX

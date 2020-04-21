@@ -84,11 +84,12 @@ public class AvatarStats
 
     public AvatarStats(AvatarManager mainAvatar)
     {
-        stats = new int[4];
+        stats = new int[5];
         stats[0] = mainAvatar.Boredom;
         stats[1] = mainAvatar.Sleep;
         stats[2] = mainAvatar.Hunger;
-        stats[3] = System.DateTime.Now.Hour;
+        stats[3] = mainAvatar.lastUsedHour;
+        stats[4] = mainAvatar.catNumber;    
     }
 }
 
@@ -98,15 +99,25 @@ public class DiagnosisStats
 
     public List<string> statsList;
 
-    public DiagnosisStats (GameController mainGame)
+    public DiagnosisStats(GameController mainGame)
     {
-        int statSize = mainGame.Feelings.Count;
-        statsList = new List<string>(statSize);
+        //  int statSize = mainGame.Feelings.Count;
 
-        for (int i = 0; i < statSize; i++)
+        statsList = new List<string>();
+
+        if (mainGame.Feelings != null)
         {
-            statsList[i] = mainGame.Feelings[i];
+            foreach (string str in mainGame.Feelings)
+            {
+                statsList.Add(str);
+            }
         }
-       
+
+        else
+        { 
+                statsList.Add("cat");
+               
+        }
     }
+      
 }
