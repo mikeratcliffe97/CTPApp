@@ -14,10 +14,13 @@ public class AssignText : MonoBehaviour
     public List<string> assignedSymptoms;
 
     private ButtonToggle buttonScript;
+
+    [SerializeField]
+    private SymptomReader reader;
     // Start is called before the first frame update
     void Start()
     {
-        
+        reader.LoadSymptoms();
         symptomButtons = GetComponentsInChildren<Button>();
         numberOfButtons = symptomButtons.Length;
 

@@ -10453,7 +10453,8 @@ MonoBehaviour:
   Hunger: 0
   Boredom: 0
   Sleep: 0
-  logOffHour: 0
+  currentHour: 0
+  lastUsedHour: 0
   catNumber: 0
   catOnDisplay: {fileID: 0}
   customU: {fileID: 1078980663}
@@ -12331,6 +12332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   symptomButtons: []
   assignedSymptoms: []
+  reader: {fileID: 1326118174}
 --- !u!1 &920364988
 GameObject:
   m_ObjectHideFlags: 0
@@ -19229,6 +19231,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314302970}
   m_CullTransparentMesh: 0
+--- !u!1 &1326118173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326118175}
+  - component: {fileID: 1326118174}
+  m_Layer: 0
+  m_Name: jsonReader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1326118174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326118173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032fae66135b90b4dbab4c36dd3c6825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1326118175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326118173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 789.7748, y: 1153.4556, z: -88.27012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331563283
 GameObject:
   m_ObjectHideFlags: 0
@@ -34852,7 +34897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2002547120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35728,7 +35773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2051888448
 MonoBehaviour:
   m_ObjectHideFlags: 0

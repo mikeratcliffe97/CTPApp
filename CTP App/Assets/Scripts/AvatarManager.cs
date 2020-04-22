@@ -105,22 +105,24 @@ public class AvatarManager : MonoBehaviour
         catNumber = customU.current_index;
     }
 
-    
 
-   public void AddCats()
+
+    public void AddCats()
     {
-       
+
         catsToDisplay = new List<GameObject>();
 
-      
-       for (int i = 0; i < customU.images.Length; i++)
+
+        for (int i = 0; i < customU.images.Length; i++)
         {
             GameObject Cat = customU.images[i].gameObject;
             catsToDisplay.Add(Cat);
-           
-        }
 
-        Debug.Log(catsToDisplay.Count + "cats");
+        }
+        if (catsToDisplay.Count != 21)
+        {
+            Debug.Log(catsToDisplay.Count + "cats");
+        }
     }
     // Update is called once per frame
 
@@ -172,6 +174,14 @@ public class AvatarManager : MonoBehaviour
         }
 
         currentHour = System.DateTime.Now.Hour;
+
+        //Debug Key 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Hunger = 0;
+            Boredom = 0;
+            Sleep = 0;
+        }
     }
 
     #region ButtonCalculations
@@ -244,7 +254,8 @@ public class AvatarManager : MonoBehaviour
     #endregion
     public void SaveStats()
     {
-        lastUsedHour = 2;
+        
+        lastUsedHour = System.DateTime.Now.Hour; 
         SaveManager.SaveAvatarStats(this);
     }
 

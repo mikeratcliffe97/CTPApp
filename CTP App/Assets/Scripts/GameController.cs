@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     [SerializeField]
     public AudioSource catchNoise;
 
+    private SymptomReader symptomReader;
 
     [SerializeField]
     public List<string> Feelings;
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviour
 
     private RawImage heartObj;
 
-    private 
+    private SymptomCollection symptomCollection; 
     // Start is called before the first frame update
 
     //Random Number Gen to select which lane the object will spawn in
@@ -91,7 +92,9 @@ public class GameController : MonoBehaviour
         Heart.SetActive(false);
         Star.SetActive(false);
 
-      
+
+        symptomReader.LoadSymptoms();
+        symptomCollection = symptomReader.GetComponent<SymptomCollection>();
     }
 
     void Awake()
@@ -264,7 +267,7 @@ public class GameController : MonoBehaviour
         {
             case 0:
                 {
-                    symptomText.text = "Low";
+                    symptomText.text = symptomCollection.symptoms[0].text;
                     symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
                     symptomClone.SetActive(true);
 

@@ -8,7 +8,7 @@ using System.IO;
 public static class SaveManager
 {
     // Start is called before the first frame update
-
+   
     public static void SaveAvatarStats(AvatarManager mainAvatar)
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -17,9 +17,11 @@ public static class SaveManager
 
         bf.Serialize(stream, data);
         stream.Close();
+
+       
     }
 
-
+   
     public static int[] LoadAvatarStats ()
     {
         if (File.Exists(Application.persistentDataPath + "/avatar.sav"))
@@ -92,6 +94,7 @@ public class AvatarStats
         stats[4] = mainAvatar.catNumber;    
     }
 }
+
 
 [Serializable]
 public class DiagnosisStats

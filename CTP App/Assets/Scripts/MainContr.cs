@@ -44,15 +44,43 @@ public class MainContr : MonoBehaviour
 
     void TimeEffect()
     {
+        //Check to see if stat is already at its minimum
+        bool minBReached = false;
+        bool minSReached = false;
+        bool minHReached = false;
+        if (avatar.Boredom <= 0)
+        {
+            minBReached = true;
+        }
 
-        for (int i = 0; i > timeCount.Hours; i++)
+        if (avatar.Hunger <= 0)
+        {
+            minHReached = true;
+        }
+
+        if (avatar.Sleep <= 0)
+        {
+            minSReached = true;
+        }
+       
+        //Removes stat based on the hours the user has not been on the app
+        for (int i = 0; i < timeCount.Hours; i++)
         {
             if (i <= 10)
             {
+                if (!minBReached)
+                {
+                    avatar.Boredom = avatar.Boredom - 1;
+                }
+                if (!minSReached)
+                {
+                    avatar.Sleep = avatar.Sleep - 1;
+                }
 
-                avatar.Boredom = avatar.Boredom - 1;
-                avatar.Sleep = avatar.Sleep - 1;
-                avatar.Hunger = avatar.Hunger - 1;
+                if (!minHReached)
+                {
+                    avatar.Hunger = avatar.Hunger - 1;
+                }
             }
 
             else if (i > 10)
@@ -61,8 +89,10 @@ public class MainContr : MonoBehaviour
                 avatar.Sleep = 0;
                 avatar.Sleep = 0;
             }
-        }
 
+            Debug.Log("Removed stats: " + i);
+        }
+      
     }
     // Update is called once per frame
     void Update()
