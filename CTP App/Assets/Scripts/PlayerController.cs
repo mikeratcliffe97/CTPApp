@@ -24,8 +24,7 @@ public class PlayerController : MonoBehaviour
     private int catNumber;
     
     
-    public AudioClip catchNoise;
-
+   
 
     private int rightbound;
     private int leftbound;
@@ -47,13 +46,7 @@ public class PlayerController : MonoBehaviour
     }
 
    
-    // Update is called once per frame
-    void Update()
-    {
-
-     
-    
-    }
+   
 
     void AddCats()
     {   
@@ -68,6 +61,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(catsToDisplay.Count + "cats");
      
     }
+    //Movement controlled externally through buttons
     void MoveLeft()
     {
         if (game.GameRunning)
@@ -102,9 +96,9 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "StarIcon")
         {
             game.score += 100;
-          
 
-                game.catchNoise.PlayOneShot(catchNoise);
+
+            game.catchNoise.Play();
 
 
             
@@ -113,12 +107,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Feeling")
             {
                 game.score -= 25;
+            game.meowNoise.Play();
+                
             }
           
         else if (collision.gameObject.tag != "Feeling" && collision.gameObject.tag != "StarIcon")
             {
                 game.score += 10;
-            game.catchNoise.PlayOneShot(catchNoise);
+            game.catchNoise.Play();
         }
            
         if (game.numObjects >= 1)

@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+/*
+ * This code was taken from a blog
+ * https://sushanta1991.blogspot.com/2016/12/how-to-create-carousel-view-with-unity.html
+ * 
+ * Some changes were made to function within my project
+ * 
+ * */
 public class CarouselSlider : MonoBehaviour
 {
 

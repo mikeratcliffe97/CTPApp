@@ -33,6 +33,11 @@ public class SymptomReader : MonoBehaviour
     public SymptomCollection SymptomCollection;
     string path;
     //Loads json into game
+    private void Start()
+    {
+
+        
+    }
 
     private void Awake()
     {
@@ -52,9 +57,13 @@ public class SymptomReader : MonoBehaviour
 
             {
                 string jsonStr = stream.ReadToEnd();
+                SymptomCollection = new SymptomCollection();
 
-                SymptomCollection = JsonUtility.FromJson<SymptomCollection>(jsonStr);
-               // SymptomCollection._symptoms.ToString
+
+
+             
+                   
+                // SymptomCollection._symptoms.ToString
                 FindObjectOfType<Text>().text = SymptomCollection.ToString();
 
                 Debug.Log("Loaded: " + SymptomCollection.symptoms.Length);

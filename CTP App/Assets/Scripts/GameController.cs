@@ -10,8 +10,9 @@ public class GameController : MonoBehaviour
    
     public GameObject ObjectSpawnPos;
 
-    [SerializeField]
+    
     public AudioSource catchNoise;
+    public AudioSource meowNoise;
 
     private SymptomReader symptomReader;
 
@@ -65,8 +66,9 @@ public class GameController : MonoBehaviour
     float timeLeft = 100f;
 
     private RawImage heartObj;
-
-    private SymptomCollection symptomCollection; 
+    [SerializeField]
+    private TxTReader reader;
+    private string[] _symptoms;
     // Start is called before the first frame update
 
     //Random Number Gen to select which lane the object will spawn in
@@ -80,28 +82,20 @@ public class GameController : MonoBehaviour
 
         buttonObject = StartButton.gameObject;
         scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-
         timer = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
-
         heartObj = GameObject.Find("HeartObject").GetComponent<RawImage>();
         symptomText = Symptom.GetComponentInChildren<TextMeshProUGUI>();
-
         winscreenText = WinScreen.GetComponentInChildren<TextMeshProUGUI>();
         defeatscreenText = DefeatScreen.GetComponentInChildren<TextMeshProUGUI>();
+       
+       
         Symptom.SetActive(false);
         Heart.SetActive(false);
         Star.SetActive(false);
 
-
-        symptomReader.LoadSymptoms();
-        symptomCollection = symptomReader.GetComponent<SymptomCollection>();
+     //   int strMax = reader.symptomsFromFile.Length;
+        _symptoms = reader.symptomsFromFile;
     }
-
-    void Awake()
-    {
-     
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -129,23 +123,27 @@ public class GameController : MonoBehaviour
 
         if (GameComplete)
         {
-            if (score >= maxScore)
-            {
-                WinScreen.SetActive(true);
-                winscreenText.text = "Congratulations! \nYour score was: " + score;
-            }
-
-            else
-            {
-                DefeatScreen.SetActive(true);
-                defeatscreenText.text = "Unlucky! \nYour score was: " + score;
-
-            }
+            GameEnded();     
         }
 
 
     }
 
+    void GameEnded()
+    {
+        if (score >= maxScore)
+        {
+            WinScreen.SetActive(true);
+            winscreenText.text = "Congratulations! \nYour score was: " + score;
+        }
+
+        else
+        {
+            DefeatScreen.SetActive(true);
+            defeatscreenText.text = "Unlucky! \nYour score was: " + score;
+
+        }
+    }
 
     IEnumerator StartGame()
     {
@@ -169,21 +167,10 @@ public class GameController : MonoBehaviour
         {
             InvokeRepeating("ChooseLane", 2.0f, 3.0f);
             InvokeRepeating("SpawnObject", 3f, 3.1f);
-            InvokeRepeating("SymptomDrop", 5, 10f);
+            InvokeRepeating("SymptomDrop", 5, 8f);
         }
 
     }
-
-    //IEnumerator NumberGen()
-    //{
-    //    while (GameRunning)
-    //    { 
-    //     ChosenLane = Random.Range(LeftLane, RightLane);
-    //     yield return new WaitForSeconds(5);
-           
-    //        Debug.Log(ChosenLane);
-    //    }
-    //}
 
     int ChooseLane()
     {
@@ -261,72 +248,82 @@ public class GameController : MonoBehaviour
 
     void SymptomDrop()
     {
-        symptomNumber = Random.Range(0, 8);
+        symptomNumber = Random.Range(0, _symptoms.Length - 1);
+        Debug.Log("Symptom no: " + symptomNumber);
         Vector3 SpawnPos = new Vector3(ObjectLanes[ChosenLane].transform.position.x, 2000, 0);
-        switch (symptomNumber)
-        {
-            case 0:
-                {
-                    symptomText.text = symptomCollection.symptoms[0].text;
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
 
-                    break;
-                }
-            case 1:
-                {
-                    symptomText.text = "Tired";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
 
-                }
-            case 2:
-                {
-                    symptomText.text = "Stressed";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
-
-                }
-            case 3:
-                {
-                    symptomText.text = "Sad";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
-
-                }
-            case 4:
-                {
-                    symptomText.text = "Lonely";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
-
-                }
-            case 5:
-                {
-                    symptomText.text = "Anxious";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
-
-                }
-            case 6:
-                {
-                    symptomText.text = "Jittery";
-                    symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
-                    symptomClone.SetActive(true);
-                    break;
-
-                }
-
-        }
-       
+        symptomText.text = _symptoms[symptomNumber];
+        symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+        Debug.Log("Spawning: " + symptomText.text + "/" + symptomNumber);
+        symptomClone.SetActive(true);
     }
 
-   public void AddSymptom()
+    #region legacy
+    //switch (symptomNumber)
+    //{
+    //    case 0:
+    //        {
+    //            symptomText.text = _symptoms[0];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+
+    //            break;
+    //        }
+    //    case 1:
+    //        {
+    //            symptomText.text = _symptoms[1];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+    //    case 2:
+    //        {
+    //            symptomText.text = _symptoms[2];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+    //    case 3:
+    //        {
+    //            symptomText.text = _symptoms[3];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+    //    case 4:
+    //        {
+    //            symptomText.text = _symptoms[4];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+    //    case 5:
+    //        {
+    //            symptomText.text = _symptoms[5];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+    //    case 6:
+    //        {
+    //            symptomText.text = _symptoms[6];
+    //            symptomClone = Instantiate(Symptom, SpawnPos, Quaternion.identity, ObjectLanes[0].transform) as GameObject;
+    //            symptomClone.SetActive(true);
+    //            break;
+
+    //        }
+
+    //}
+    //
+    //  }
+    #endregion
+    public void AddSymptom()
     {
         if (!Feelings.Contains(symptomText.text))
         {

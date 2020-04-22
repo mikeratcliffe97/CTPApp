@@ -712,7 +712,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -884,7 +884,7 @@ RectTransform:
   - {fileID: 390743115}
   - {fileID: 1877305991}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -961,7 +961,7 @@ RectTransform:
   m_Children:
   - {fileID: 1729393332}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1083,7 +1083,7 @@ RectTransform:
   m_Children:
   - {fileID: 920119494}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1244,6 +1244,7 @@ MonoBehaviour:
   - {fileID: 603884183}
   ObjectSpawnPos: {fileID: 334746855}
   catchNoise: {fileID: 1636835093}
+  meowNoise: {fileID: 560726693}
   Feelings: []
   droppers: {fileID: 1992497880}
   score: 0
@@ -1260,6 +1261,7 @@ MonoBehaviour:
   Star: {fileID: 1992497875}
   Symptom: {fileID: 1819779169}
   StartButton: {fileID: 256045920}
+  reader: {fileID: 1307113712}
 --- !u!1 &362538646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,7 +1723,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1932,7 +1934,7 @@ RectTransform:
   m_Children:
   - {fileID: 1920932478}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2105,6 +2107,133 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545698848}
   m_CullTransparentMesh: 0
+--- !u!1 &560726691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560726692}
+  - component: {fileID: 560726693}
+  m_Layer: 0
+  m_Name: CatSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &560726692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560726691}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -554.7596, y: -939.1424, z: -31.504263}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1246471025}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &560726693
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560726691}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eaa9d946ecd6f8c4db901dcdefd63880, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.159
+  m_Pitch: 0.83
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 197
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &603884183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,8 +2885,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -10.900024}
+  m_SizeDelta: {x: 0, y: -56.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920119495
 MonoBehaviour:
@@ -2779,9 +2908,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Welcome to\n 'Don't Catch Feelings'\n\nCatch the stars and hearts by moving
-    your avatar with the arrows.\n\nTap on 'Feelings' before they reach the bottom
-    of the screen.\n\nTap anywhere on me to dismiss this message!"
+  m_text: "Welcome to\nThe Lake\n\nCatch the stars and hearts by moving your U with
+    the arrows. \nYou'll see some negative feelings.\nTry and swipe them before they
+    reach the bottom of the screen.\n\nTap anywhere on me to dismiss this message!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2809,7 +2938,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
+  m_fontSize: 69.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2850,12 +2979,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 920119495}
-    characterCount: 209
+    characterCount: 225
     spriteCount: 0
-    spaceCount: 39
-    wordCount: 36
+    spaceCount: 43
+    wordCount: 41
     linkCount: 0
-    lineCount: 13
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3141,7 +3270,7 @@ RectTransform:
   m_GameObject: {fileID: 1025160888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 440.85028}
-  m_LocalScale: {x: 2.3959, y: 2.3959, z: 2.3959}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 1080738870}
   m_RootOrder: 3
@@ -3173,7 +3302,6 @@ MonoBehaviour:
   playercol: {fileID: 1025160891}
   catsToDisplay: []
   catNumber: 0
-  catchNoise: {fileID: 8300000, guid: eaa9d946ecd6f8c4db901dcdefd63880, type: 3}
   game: {fileID: 334746857}
 --- !u!61 &1025160891
 BoxCollider2D:
@@ -3393,7 +3521,7 @@ RectTransform:
   m_LocalScale: {x: 2.4122999, y: 2.4122999, z: 2.4122999}
   m_Children: []
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3617,7 +3745,6 @@ RectTransform:
   - {fileID: 1851505924}
   - {fileID: 1080738870}
   - {fileID: 334746856}
-  - {fileID: 1636835092}
   - {fileID: 256045919}
   - {fileID: 420116908}
   - {fileID: 1122820038}
@@ -3628,6 +3755,8 @@ RectTransform:
   - {fileID: 102703766}
   - {fileID: 406398527}
   - {fileID: 1611348938}
+  - {fileID: 1636835092}
+  - {fileID: 560726692}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3636,6 +3765,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1307113711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307113713}
+  - component: {fileID: 1307113712}
+  m_Layer: 0
+  m_Name: Reader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1307113712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307113711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f6ceb5bd0f5d4ba78cf579b4051fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symptomsFromFile: []
+--- !u!4 &1307113713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307113711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 637.8326, y: 587.1296, z: -272.76572}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1334100684
 GameObject:
   m_ObjectHideFlags: 0
@@ -3894,7 +4067,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4267,7 +4440,7 @@ RectTransform:
   m_Children:
   - {fileID: 983988652}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4430,7 +4603,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 5
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1636835093
 AudioSource:
@@ -4442,9 +4615,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: eaa9d946ecd6f8c4db901dcdefd63880, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fe103da4aed77d0499af10ae4f6ecf90, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.343
+  m_Volume: 0.159
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4933,7 +5106,7 @@ RectTransform:
   - {fileID: 419533906}
   - {fileID: 2106616913}
   m_Father: {fileID: 1246471025}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

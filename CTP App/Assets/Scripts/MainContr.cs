@@ -22,16 +22,17 @@ public class MainContr : MonoBehaviour
         quitbutton = GameObject.Find("Quit").GetComponent<Button>();
         quitbutton.onClick.AddListener(delegate { Quit(); });
 
-        int year = DateTime.Now.Year, month = DateTime.Now.Month, day = DateTime.Now.Day, hour = avatar.lastUsedHour, minute = DateTime.Now.Minute;
-        lastChecked = new DateTime(year, month, day, hour, minute, 0);
-        
-        
+        int year = DateTime.Now.Year,
+        month = DateTime.Now.Month, 
+        day = DateTime.Now.Day, 
+        hour = avatar.lastUsedHour, 
+        minute = DateTime.Now.Minute;
+        //Initialise the date time with the record of when the user last logged in
+        lastChecked = new DateTime(year, month, day, hour, minute, 0);      
         long ticks = 0;
-
         long.TryParse(avatar.lastUsedHour.ToString(), out ticks);
-        
         timeCount = new TimeSpan(ticks);
-
+      //Calculate the difference between the last log in and now
         StartCoroutine(statsCalculate());
         
     }

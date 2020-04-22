@@ -16,20 +16,20 @@ public class AssignText : MonoBehaviour
     private ButtonToggle buttonScript;
 
     [SerializeField]
-    private SymptomReader reader;
+    private TxTReader reader;
     // Start is called before the first frame update
     void Start()
     {
-        reader.LoadSymptoms();
+        
         symptomButtons = GetComponentsInChildren<Button>();
         numberOfButtons = symptomButtons.Length;
 
         assignedSymptoms = new List<string>(numberOfButtons);
       
-        foreach(string str in SaveManager.LoadDiagnosisStats())
+        foreach(string _symptom in reader.symptomsFromFile)
         {
             int i = assignedSymptoms.Count;
-          assignedSymptoms.Add(str.ToString());
+            assignedSymptoms.Add(_symptom);
           
             buttonScript = symptomButtons[i].GetComponent<ButtonToggle>();
             buttonScript.boolNumber = i + 1;
@@ -60,6 +60,6 @@ public class AssignText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 }

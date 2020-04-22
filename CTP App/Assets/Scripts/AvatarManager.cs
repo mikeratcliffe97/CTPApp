@@ -181,6 +181,7 @@ public class AvatarManager : MonoBehaviour
             Hunger = 0;
             Boredom = 0;
             Sleep = 0;
+            Debug.Log("Resetting");
         }
     }
 
@@ -280,7 +281,8 @@ public class AvatarManager : MonoBehaviour
 
         else { breath.Stop(); }
         }
-      
+   
+    
     public void setAnimation()
     {
         AnimEnabled = !AnimEnabled;
