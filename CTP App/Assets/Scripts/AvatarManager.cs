@@ -190,10 +190,11 @@ public class AvatarManager : MonoBehaviour
     {
         float timeSlept = 2;
         float _sleep = (float)Sleep;
-
-
-        _sleep = _sleep + timeSlept;
-        Debug.Log("bedtime");
+        if (_sleep <= 9)
+        {
+            _sleep = _sleep + timeSlept;
+        }
+            Debug.Log("bedtime");
         Sleep = (int)_sleep;
         return Sleep;
     }
@@ -202,9 +203,10 @@ public class AvatarManager : MonoBehaviour
     {
         float boredomCured = 2;
         float _bored = (float)Boredom;
-
-        _bored = _bored + boredomCured;
-
+        if (_bored <= 9)
+        {
+            _bored = _bored + boredomCured;
+        }
         Boredom = (int)_bored;
         return Boredom;
     }

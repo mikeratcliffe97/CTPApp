@@ -10,9 +10,13 @@ public class TxTReader : MonoBehaviour
     private string[] defSymptoms;
     private string path;
 
-    static int max_string = 8;
+    static int max_string = 9;
     // Start is called before the first frame update
     void Start()
+    {
+       
+     }
+    void Awake()
     {
         path = Application.persistentDataPath + "/symptoms.txt";
         if (!File.Exists(path))
@@ -20,11 +24,11 @@ public class TxTReader : MonoBehaviour
             WriteToFile(defSymptoms);
         }
 
-        else 
+        else
         {
             ReadFromFile();
         }
-     }
+    }
 
 
     private void ReadFromFile()

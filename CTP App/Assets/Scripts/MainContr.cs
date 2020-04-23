@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class MainContr : MonoBehaviour
 {
    [SerializeField]
@@ -14,6 +14,8 @@ public class MainContr : MonoBehaviour
 
 
     private Button quitbutton;
+    [SerializeField]
+    private GameObject welcomeCat;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,9 @@ public class MainContr : MonoBehaviour
 
     void TimeEffect()
     {
+        string guiltString = "Your U missed you!";
+        string encourageString = "Why not visit your U?";
+        TextMeshProUGUI text = welcomeCat.GetComponentInChildren<TextMeshProUGUI>();
         //Check to see if stat is already at its minimum
         bool minBReached = false;
         bool minSReached = false;
@@ -52,6 +57,7 @@ public class MainContr : MonoBehaviour
         if (avatar.Boredom <= 0)
         {
             minBReached = true;
+            text.text += "\n" +guiltString;
         }
 
         if (avatar.Hunger <= 0)
@@ -71,6 +77,7 @@ public class MainContr : MonoBehaviour
             {
                 if (!minBReached)
                 {
+                    text.text += "\n" + guiltString;
                     avatar.Boredom = avatar.Boredom - 1;
                 }
                 if (!minSReached)
@@ -89,6 +96,7 @@ public class MainContr : MonoBehaviour
                 avatar.Hunger = 0;
                 avatar.Sleep = 0;
                 avatar.Sleep = 0;
+
             }
 
             Debug.Log("Removed stats: " + i);

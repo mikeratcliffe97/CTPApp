@@ -46,8 +46,6 @@ public class PlayerController : MonoBehaviour
     }
 
    
-   
-
     void AddCats()
     {   
         catsToDisplay = new List<GameObject>();
@@ -106,8 +104,9 @@ public class PlayerController : MonoBehaviour
             
         if (collision.gameObject.tag == "Feeling")
             {
-                game.score -= 25;
+            game.score -= 25;
             game.meowNoise.Play();
+            game.AddSymptom();
                 
             }
           

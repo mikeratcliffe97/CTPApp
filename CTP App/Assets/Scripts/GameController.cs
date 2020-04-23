@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 
     private RawImage heartObj;
     [SerializeField]
-    private TxTReader reader;
+    public TxTReader reader;
     private string[] _symptoms;
     // Start is called before the first frame update
 
@@ -93,8 +93,11 @@ public class GameController : MonoBehaviour
         Heart.SetActive(false);
         Star.SetActive(false);
 
-     //   int strMax = reader.symptomsFromFile.Length;
-        _symptoms = reader.symptomsFromFile;
+        //   int strMax = reader.symptomsFromFile.Length;
+       
+     
+        string[] vars = reader.symptomsFromFile;
+        _symptoms = vars;
     }
 
     // Update is called once per frame
@@ -248,7 +251,8 @@ public class GameController : MonoBehaviour
 
     void SymptomDrop()
     {
-        symptomNumber = Random.Range(0, _symptoms.Length - 1);
+        //Debug.Log(_symptoms.Length);
+        symptomNumber = Random.Range(0, 9);
         Debug.Log("Symptom no: " + symptomNumber);
         Vector3 SpawnPos = new Vector3(ObjectLanes[ChosenLane].transform.position.x, 2000, 0);
 
