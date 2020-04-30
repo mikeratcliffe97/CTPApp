@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Code taken from a Unity forum
 public class Fullscreen : MonoBehaviour
 {
     // Start is called before the first frame update
     private void Awake()
     {
+        Screen.SetResolution(1080, 1920, false, 0);
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
         float cameraHeight = Camera.main.orthographicSize * 2;

@@ -11,14 +11,38 @@ public class MainContr : MonoBehaviour
 
     TimeSpan timeCount;
     DateTime lastChecked;
-
-
+   
+    private GameObject homePage;
     private Button quitbutton;
     [SerializeField]
     private GameObject welcomeCat;
+
+    [SerializeField]
+    private NotificationManager notificationManager;
     // Start is called before the first frame update
     void Start()
     {
+        //GameObject[] active = FindObjectsOfType<GameObject>();
+        //GameObject[] activeChildren;
+        ////Checks if 
+        //homePage = this.gameObject;
+        //activeChildren = homePage.GetComponentsInChildren<GameObject>();
+        
+        //foreach (GameObject activeObject in active)
+        //{
+        
+        //    if (activeObject.name != "Home Page")
+        //    {
+        //        activeObject.SetActive(false);
+        //        homePage.SetActive(true);
+        //       for (int i = 0; i < activeChildren.Length; i++)
+        //        {
+        //            activeChildren[i].SetActive(true);
+        //        }
+            
+        //    }
+        //}
+     //   Screen.SetResolution(1080, 1020, false, 0);
          avatar.Load();
         
         quitbutton = GameObject.Find("Quit").GetComponent<Button>();
@@ -77,7 +101,7 @@ public class MainContr : MonoBehaviour
             {
                 if (!minBReached)
                 {
-                    text.text += "\n" + guiltString;
+                 
                     avatar.Boredom = avatar.Boredom - 1;
                 }
                 if (!minSReached)
@@ -131,5 +155,10 @@ public class MainContr : MonoBehaviour
     void OnApplicationQuit()
     {
         avatar.SaveStats();
+        string notifTitle = "Visit your U!";
+        string notif = "Hey, your U misses you!";
+        int time = 120;
+        notificationManager.SendNotification(notifTitle, notif, time);
+        Debug.Log("Noti sent");
     }
 }
